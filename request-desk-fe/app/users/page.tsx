@@ -71,7 +71,7 @@ function UsersPage() {
 		window.setTimeout(() => {
 			setNotice("");
 		}, 3500);
-		window.navigation.reload()
+		window.location.reload();
 	}
 
 
