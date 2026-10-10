@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://require-desk.vercel.app/", 
+    origin: "https://require-desk.vercel.app", 
     credentials: true
   })
 );
