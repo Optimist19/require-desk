@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useRequestDesk } from "@/store";
+import { useRouter } from "next/navigation";
+
 
 export default function AuthProvider({
 	children,
@@ -10,22 +12,24 @@ export default function AuthProvider({
 }) {
 	const { refreshAccessToken } = useRequestDesk((state) => state);
 
-	const [isLoading, setIsLoading] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
+	const router = useRouter();
+
 
 
 	useEffect(() => {
 		async function loadRefreshAccessToken() {
 			const token = await refreshAccessToken()
-			if (token) {
-				setIsLoading(true)
-
-				setIsLoading(false)
+			if (!token) {
+				router.replace("/auth");
 			}
+
+			setIsLoading(false);
 
 		}
 		loadRefreshAccessToken()
 
-	}, [refreshAccessToken]);
+	}, [refreshAccessToken, router]);
 
 	if (isLoading) {
 

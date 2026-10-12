@@ -41,6 +41,7 @@ function AuthPage() {
           setAuthMode("register")
         }
 
+        setForm({ email: '', password: '', role: '' as Role, name: "" })
         return;
       }
       await authFtn({ ...form, email: emailTrim })
